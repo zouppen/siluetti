@@ -1,6 +1,6 @@
 module LineTools where
 
-data Square = Black | White | Any
+data Square = Black | White | Any deriving Eq
 
 data LineInfo = LineInfo { lineLen :: Int, hints :: [Int] } deriving Show
 --data LinePosInfo = LinePosInfo { lineLen :: Int,
@@ -25,12 +25,19 @@ sqAnd White White = White
 sqAnd Black Black = Black
 sqAnd _ _ = Any
 
-sqComb White Black = error "Impossible"
-sqComb Black White = error "Impossible"
-sqComb Black Black = Black
-sqComb White White = White
-sqComb Any a = a
-sqComb a Any = a
+sqOk White Black = False
+sqOk Black White = False
+sqOk Black Black = True
+sqOk White White = True
+sqOk Any _ = True
+sqOk _ Any = True
 
 lineAnd :: [Line] -> Line
 lineAnd = foldl1 (zipWith sqAnd)
+
+unknown :: Line -> Int
+unknown line = length $ filter (==Any) line
+
+-- Checks if the lines are not "contraversial"
+lineOk :: Line -> Line -> Bool
+lineOk a b = and $ zipWith sqOk a b
