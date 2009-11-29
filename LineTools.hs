@@ -41,3 +41,7 @@ unknown line = length $ filter (==Any) line
 -- Checks if the lines are not "contraversial"
 lineOk :: Line -> Line -> Bool
 lineOk a b = and $ zipWith sqOk a b
+
+showGrid :: Grid -> String
+showGrid grid = unlines $ ([topline] ++ map show grid ++ [topline])
+  where topline = replicate (2+(length $ head grid)) '-'
