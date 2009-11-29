@@ -1,0 +1,19 @@
+Siluetti
+
+A primitive horizontal-vertical-type solver for black and white nonograms.
+Written in Haskell.
+
+Licenced under the terms of GNU GPL v3+. See COPYING.
+
+Author: Joel Lehtonen, joel.lehtonen ät jyu.fi
+
+There are two examples in a file called Examples.hs.
+
+- "football" can not be solved with horizontal-vertical solver
+- "dog" can be solved with this thing.
+
+Try by yourself:
+
+$ runhaskell Example.hs
+
+More information about nonograms: http://en.wikipedia.org/wiki/Nonogram
